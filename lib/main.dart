@@ -1,21 +1,62 @@
 import 'package:flutter/material.dart';
-import 'package:qwiz_app/di/inject_module.dart';
-import 'package:qwiz_app/presentation/quiz_page.dart/quiz_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qwiz_app/core/di/inject_module.config.dart';
+import 'package:qwiz_app/core/di/inject_module.dart';
+import 'package:qwiz_app/core/router/app_router.dart';
+import 'package:talker_flutter/talker_flutter.dart';
+import 'package:talker_bloc_logger/talker_bloc_logger.dart';
+// import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-void main() {
-  configureDependencies();
-  runApp(const MyApp());
+final talker = Talker(
+  settings: TalkerSettings(enabled: true, useConsoleLogs: true),
+  logger: TalkerLogger(
+    settings: TalkerLoggerSettings(
+      maxLineWidth: 120,
+      enableColors: true,
+      enable: true,
+    ),
+  ),
+);
+
+Future<void> main() async {
+  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  await configureDependencies();
+  getIt.registerSingleton<Talker>(talker);
+  Bloc.observer = TalkerBlocObserver(
+    talker: talker,
+    settings: TalkerBlocLoggerSettings(
+      enabled: true,
+      printEvents: true,
+      printTransitions: true,
+      printChanges: true,
+      printClosings: true,
+      printCreations: true,
+    ),
+  );
+  runApp(MyApp());
+}
+
+Future<void> configureDependencies() async {
+  try {
+    getIt.init();
+    talker.verbose('Dependencies initialized successfully!');
+  } catch (e, st) {
+    talker.handle(e, st, 'Dependency Injection Error');
+  }
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final router = getIt<AppRouter>();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: QuizPage(),
+      routerConfig: router.config(),
     );
   }
 }
