@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:qwiz_app/core/constants/app_constants.dart';
 import 'package:qwiz_app/core/types/typedef.dart';
 import 'package:qwiz_app/features/home/data/models/category_model.dart';
 
+@Injectable()
 class HomeRemoteDatasource {
   HomeRemoteDatasource(this.dio);
   final Dio dio;

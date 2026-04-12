@@ -347,14 +347,14 @@ extension QuizStatePatterns on QuizState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Error value)?  error,TResult Function( _LoadedQuestions value)?  activeSession,TResult Function( _Finished value)?  finished,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Error value)?  error,TResult Function( _LoadedQuestions value)?  loadedQuestions,TResult Function( _Finished value)?  finished,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case _Loading() when loading != null:
 return loading(_that);case _Error() when error != null:
-return error(_that);case _LoadedQuestions() when activeSession != null:
-return activeSession(_that);case _Finished() when finished != null:
+return error(_that);case _LoadedQuestions() when loadedQuestions != null:
+return loadedQuestions(_that);case _Finished() when finished != null:
 return finished(_that);case _:
   return orElse();
 
@@ -373,14 +373,14 @@ return finished(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Error value)  error,required TResult Function( _LoadedQuestions value)  activeSession,required TResult Function( _Finished value)  finished,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Error value)  error,required TResult Function( _LoadedQuestions value)  loadedQuestions,required TResult Function( _Finished value)  finished,}){
 final _that = this;
 switch (_that) {
 case _Initial():
 return initial(_that);case _Loading():
 return loading(_that);case _Error():
 return error(_that);case _LoadedQuestions():
-return activeSession(_that);case _Finished():
+return loadedQuestions(_that);case _Finished():
 return finished(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
@@ -395,14 +395,14 @@ return finished(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Error value)?  error,TResult? Function( _LoadedQuestions value)?  activeSession,TResult? Function( _Finished value)?  finished,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Error value)?  error,TResult? Function( _LoadedQuestions value)?  loadedQuestions,TResult? Function( _Finished value)?  finished,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case _Loading() when loading != null:
 return loading(_that);case _Error() when error != null:
-return error(_that);case _LoadedQuestions() when activeSession != null:
-return activeSession(_that);case _Finished() when finished != null:
+return error(_that);case _LoadedQuestions() when loadedQuestions != null:
+return loadedQuestions(_that);case _Finished() when finished != null:
 return finished(_that);case _:
   return null;
 
@@ -420,13 +420,13 @@ return finished(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( Failure failure)?  error,TResult Function( List<QuestionEntity> questions,  int currentIndex,  int score)?  activeSession,TResult Function( int score,  int total)?  finished,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( Failure failure)?  error,TResult Function( List<QuestionEntity> questions,  int currentIndex,  int score)?  loadedQuestions,TResult Function( int score,  int total)?  finished,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Error() when error != null:
-return error(_that.failure);case _LoadedQuestions() when activeSession != null:
-return activeSession(_that.questions,_that.currentIndex,_that.score);case _Finished() when finished != null:
+return error(_that.failure);case _LoadedQuestions() when loadedQuestions != null:
+return loadedQuestions(_that.questions,_that.currentIndex,_that.score);case _Finished() when finished != null:
 return finished(_that.score,_that.total);case _:
   return orElse();
 
@@ -445,13 +445,13 @@ return finished(_that.score,_that.total);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( Failure failure)  error,required TResult Function( List<QuestionEntity> questions,  int currentIndex,  int score)  activeSession,required TResult Function( int score,  int total)  finished,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( Failure failure)  error,required TResult Function( List<QuestionEntity> questions,  int currentIndex,  int score)  loadedQuestions,required TResult Function( int score,  int total)  finished,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Error():
 return error(_that.failure);case _LoadedQuestions():
-return activeSession(_that.questions,_that.currentIndex,_that.score);case _Finished():
+return loadedQuestions(_that.questions,_that.currentIndex,_that.score);case _Finished():
 return finished(_that.score,_that.total);}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -466,13 +466,13 @@ return finished(_that.score,_that.total);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( Failure failure)?  error,TResult? Function( List<QuestionEntity> questions,  int currentIndex,  int score)?  activeSession,TResult? Function( int score,  int total)?  finished,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( Failure failure)?  error,TResult? Function( List<QuestionEntity> questions,  int currentIndex,  int score)?  loadedQuestions,TResult? Function( int score,  int total)?  finished,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Error() when error != null:
-return error(_that.failure);case _LoadedQuestions() when activeSession != null:
-return activeSession(_that.questions,_that.currentIndex,_that.score);case _Finished() when finished != null:
+return error(_that.failure);case _LoadedQuestions() when loadedQuestions != null:
+return loadedQuestions(_that.questions,_that.currentIndex,_that.score);case _Finished() when finished != null:
 return finished(_that.score,_that.total);case _:
   return null;
 
@@ -647,7 +647,7 @@ int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(
 
 @override
 String toString() {
-  return 'QuizState.activeSession(questions: $questions, currentIndex: $currentIndex, score: $score)';
+  return 'QuizState.loadedQuestions(questions: $questions, currentIndex: $currentIndex, score: $score)';
 }
 
 

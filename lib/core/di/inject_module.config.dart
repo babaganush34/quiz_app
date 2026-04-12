@@ -43,25 +43,31 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i189.QuizRemoteDatasource>(() => _i189.QuizRemoteDatasource());
     gh.lazySingleton<_i361.Dio>(() => appModule.dio);
     gh.lazySingleton<_i81.AppRouter>(() => _i81.AppRouter());
+    gh.factory<_i278.HomeRemoteDatasource>(
+      () => _i278.HomeRemoteDatasource(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i488.QuizRepository>(
+      () => _i521.QuizRepositoryImpl(gh<_i189.QuizRemoteDatasource>()),
+    );
+    gh.lazySingleton<_i401.GetQuestionsUsecase>(
+      () => _i401.GetQuestionsUsecase(gh<_i488.QuizRepository>()),
+    );
     gh.lazySingleton<_i541.HomeRepository>(
       () => _i60.HomeRepositoreImpl(
         remoteDataSource: gh<_i278.HomeRemoteDatasource>(),
       ),
     );
-    gh.lazySingleton<_i488.QuizRepository>(
-      () => _i521.QuizRepositoryImpl(gh<_i189.QuizRemoteDatasource>()),
+    gh.lazySingleton<_i505.QuizBloc>(
+      () =>
+          _i505.QuizBloc(getQuestionsUsecase: gh<_i401.GetQuestionsUsecase>()),
+    );
+    gh.lazySingleton<_i967.GetCategoriesUsecase>(
+      () => _i967.GetCategoriesUsecase(repository: gh<_i541.HomeRepository>()),
     );
     gh.lazySingleton<_i202.HomeBloc>(
       () => _i202.HomeBloc(
         getCategoriesUsecase: gh<_i967.GetCategoriesUsecase>(),
       ),
-    );
-    gh.lazySingleton<_i401.GetQuestionsUsecase>(
-      () => _i401.GetQuestionsUsecase(gh<_i488.QuizRepository>()),
-    );
-    gh.lazySingleton<_i505.QuizBloc>(
-      () =>
-          _i505.QuizBloc(getQuestionsUsecase: gh<_i401.GetQuestionsUsecase>()),
     );
     return this;
   }

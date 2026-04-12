@@ -20,18 +20,54 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
     : _getCategoriesUsecase = getCategoriesUsecase,
       super(HomeState.initial()) {
     on<HomeEvent>((event, emit) async {
-      event.when(loadAllCategories: () => _loadAllCategories(emit));
+      await event.map(
+        loadCategories: (_) => _onLoadCategories(emit),
+        updateAmount: (e) async => _onUpdate(emit, amount: e.amount),
+        updateDifficulty: (e) async =>
+            _onUpdate(emit, difficulty: e.difficulty),
+        updateType: (e) async => _onUpdate(emit, type: e.type),
+        updateCategory: (e) async => _onUpdate(emit, categoryId: e.categoryId),
+      );
     });
   }
 
-  Future<void> _loadAllCategories(Emitter<HomeState> emit) async {
+  Future<void> _onLoadCategories(Emitter<HomeState> emit) async {
+    talker.info('LoadCategories Started');
     emit(HomeState.loading());
 
     final result = await _getCategoriesUsecase.call(NoParams());
+    talker.info('Result: $result');
 
     result.fold(
-      (error) => emit(HomeState.error(error)),
-      (success) => emit(HomeState.loadedCategories(success)),
+      (error) {
+        talker.error('Error: $error');
+        emit(HomeState.error(error));
+      },
+      (success) {
+        talker.info('Got Categories: ${success.length}');
+        emit(HomeState.loadedCategories(categories: success));
+      },
+    );
+  }
+
+  void _onUpdate(
+    Emitter<HomeState> emit, {
+    int? amount,
+    String? difficulty,
+    String? type,
+    int? categoryId,
+  }) {
+    final s = state;
+    if (s is! _LoadedCategories) return;
+
+    emit(
+      HomeState.loadedCategories(
+        categories: s.categories,
+        amount: amount ?? s.amount,
+        difficulty: difficulty ?? s.difficulty,
+        type: type ?? s.type,
+        categoryId: categoryId ?? s.categoryId,
+      ),
     );
   }
 }

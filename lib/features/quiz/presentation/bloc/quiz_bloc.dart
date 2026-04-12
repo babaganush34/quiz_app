@@ -18,10 +18,10 @@ class QuizBloc extends BaseBloc<QuizEvent, QuizState> {
   QuizBloc({required GetQuestionsUsecase getQuestionsUsecase})
     : _getQuestionsUsecase = getQuestionsUsecase,
       super(_Initial()) {
-    on<QuizEvent>((event, emit) {
-      event.when(
-        loadQuestions: (params) => _onLoadQuestions(params, emit),
-        answerSelected: (answer) => _onAnswerSelected(answer, emit),
+    on<QuizEvent>((event, emit) async {
+      await event.map(
+        loadQuestions: (e) async => _onLoadQuestions(e.params, emit),
+        answerSelected: (e) async => _onAnswerSelected(e.answer, emit),
       );
     });
   }

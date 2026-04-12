@@ -46,6 +46,7 @@ dependencies:
   talker_flutter: ^5.1.16
   flutter_native_splash: ^2.4.7
   talker_bloc_logger: ^5.1.16
+  html_unescape: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -75,8 +76,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

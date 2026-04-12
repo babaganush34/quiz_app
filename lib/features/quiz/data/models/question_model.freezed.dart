@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$QuestionModel {
 
-@JsonKey(name: 'correct_answers') String get correctAnswers;@JsonKey(name: 'incorrect_answers') List<String> get incorrectAnswers; String get question; String get difficulty; String get category;
+@JsonKey(name: 'correct_answer') String get correctAnswer;@JsonKey(name: 'incorrect_answers') List<String> get incorrectAnswers; String get question; String? get difficulty; String? get category;
 /// Create a copy of QuestionModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $QuestionModelCopyWith<QuestionModel> get copyWith => _$QuestionModelCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is QuestionModel&&(identical(other.correctAnswers, correctAnswers) || other.correctAnswers == correctAnswers)&&const DeepCollectionEquality().equals(other.incorrectAnswers, incorrectAnswers)&&(identical(other.question, question) || other.question == question)&&(identical(other.difficulty, difficulty) || other.difficulty == difficulty)&&(identical(other.category, category) || other.category == category));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is QuestionModel&&(identical(other.correctAnswer, correctAnswer) || other.correctAnswer == correctAnswer)&&const DeepCollectionEquality().equals(other.incorrectAnswers, incorrectAnswers)&&(identical(other.question, question) || other.question == question)&&(identical(other.difficulty, difficulty) || other.difficulty == difficulty)&&(identical(other.category, category) || other.category == category));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,correctAnswers,const DeepCollectionEquality().hash(incorrectAnswers),question,difficulty,category);
+int get hashCode => Object.hash(runtimeType,correctAnswer,const DeepCollectionEquality().hash(incorrectAnswers),question,difficulty,category);
 
 @override
 String toString() {
-  return 'QuestionModel(correctAnswers: $correctAnswers, incorrectAnswers: $incorrectAnswers, question: $question, difficulty: $difficulty, category: $category)';
+  return 'QuestionModel(correctAnswer: $correctAnswer, incorrectAnswers: $incorrectAnswers, question: $question, difficulty: $difficulty, category: $category)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $QuestionModelCopyWith<$Res>  {
   factory $QuestionModelCopyWith(QuestionModel value, $Res Function(QuestionModel) _then) = _$QuestionModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'correct_answers') String correctAnswers,@JsonKey(name: 'incorrect_answers') List<String> incorrectAnswers, String question, String difficulty, String category
+@JsonKey(name: 'correct_answer') String correctAnswer,@JsonKey(name: 'incorrect_answers') List<String> incorrectAnswers, String question, String? difficulty, String? category
 });
 
 
@@ -65,14 +65,14 @@ class _$QuestionModelCopyWithImpl<$Res>
 
 /// Create a copy of QuestionModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? correctAnswers = null,Object? incorrectAnswers = null,Object? question = null,Object? difficulty = null,Object? category = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? correctAnswer = null,Object? incorrectAnswers = null,Object? question = null,Object? difficulty = freezed,Object? category = freezed,}) {
   return _then(_self.copyWith(
-correctAnswers: null == correctAnswers ? _self.correctAnswers : correctAnswers // ignore: cast_nullable_to_non_nullable
+correctAnswer: null == correctAnswer ? _self.correctAnswer : correctAnswer // ignore: cast_nullable_to_non_nullable
 as String,incorrectAnswers: null == incorrectAnswers ? _self.incorrectAnswers : incorrectAnswers // ignore: cast_nullable_to_non_nullable
 as List<String>,question: null == question ? _self.question : question // ignore: cast_nullable_to_non_nullable
-as String,difficulty: null == difficulty ? _self.difficulty : difficulty // ignore: cast_nullable_to_non_nullable
-as String,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
-as String,
+as String,difficulty: freezed == difficulty ? _self.difficulty : difficulty // ignore: cast_nullable_to_non_nullable
+as String?,category: freezed == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -157,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'correct_answers')  String correctAnswers, @JsonKey(name: 'incorrect_answers')  List<String> incorrectAnswers,  String question,  String difficulty,  String category)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'correct_answer')  String correctAnswer, @JsonKey(name: 'incorrect_answers')  List<String> incorrectAnswers,  String question,  String? difficulty,  String? category)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _QuestionModel() when $default != null:
-return $default(_that.correctAnswers,_that.incorrectAnswers,_that.question,_that.difficulty,_that.category);case _:
+return $default(_that.correctAnswer,_that.incorrectAnswers,_that.question,_that.difficulty,_that.category);case _:
   return orElse();
 
 }
@@ -178,10 +178,10 @@ return $default(_that.correctAnswers,_that.incorrectAnswers,_that.question,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'correct_answers')  String correctAnswers, @JsonKey(name: 'incorrect_answers')  List<String> incorrectAnswers,  String question,  String difficulty,  String category)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'correct_answer')  String correctAnswer, @JsonKey(name: 'incorrect_answers')  List<String> incorrectAnswers,  String question,  String? difficulty,  String? category)  $default,) {final _that = this;
 switch (_that) {
 case _QuestionModel():
-return $default(_that.correctAnswers,_that.incorrectAnswers,_that.question,_that.difficulty,_that.category);case _:
+return $default(_that.correctAnswer,_that.incorrectAnswers,_that.question,_that.difficulty,_that.category);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -198,10 +198,10 @@ return $default(_that.correctAnswers,_that.incorrectAnswers,_that.question,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'correct_answers')  String correctAnswers, @JsonKey(name: 'incorrect_answers')  List<String> incorrectAnswers,  String question,  String difficulty,  String category)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'correct_answer')  String correctAnswer, @JsonKey(name: 'incorrect_answers')  List<String> incorrectAnswers,  String question,  String? difficulty,  String? category)?  $default,) {final _that = this;
 switch (_that) {
 case _QuestionModel() when $default != null:
-return $default(_that.correctAnswers,_that.incorrectAnswers,_that.question,_that.difficulty,_that.category);case _:
+return $default(_that.correctAnswer,_that.incorrectAnswers,_that.question,_that.difficulty,_that.category);case _:
   return null;
 
 }
@@ -213,10 +213,10 @@ return $default(_that.correctAnswers,_that.incorrectAnswers,_that.question,_that
 @JsonSerializable()
 
 class _QuestionModel implements QuestionModel {
-  const _QuestionModel({@JsonKey(name: 'correct_answers') required this.correctAnswers, @JsonKey(name: 'incorrect_answers') required final  List<String> incorrectAnswers, required this.question, required this.difficulty, required this.category}): _incorrectAnswers = incorrectAnswers;
+  const _QuestionModel({@JsonKey(name: 'correct_answer') required this.correctAnswer, @JsonKey(name: 'incorrect_answers') required final  List<String> incorrectAnswers, required this.question, required this.difficulty, required this.category}): _incorrectAnswers = incorrectAnswers;
   factory _QuestionModel.fromJson(Map<String, dynamic> json) => _$QuestionModelFromJson(json);
 
-@override@JsonKey(name: 'correct_answers') final  String correctAnswers;
+@override@JsonKey(name: 'correct_answer') final  String correctAnswer;
  final  List<String> _incorrectAnswers;
 @override@JsonKey(name: 'incorrect_answers') List<String> get incorrectAnswers {
   if (_incorrectAnswers is EqualUnmodifiableListView) return _incorrectAnswers;
@@ -225,8 +225,8 @@ class _QuestionModel implements QuestionModel {
 }
 
 @override final  String question;
-@override final  String difficulty;
-@override final  String category;
+@override final  String? difficulty;
+@override final  String? category;
 
 /// Create a copy of QuestionModel
 /// with the given fields replaced by the non-null parameter values.
@@ -241,16 +241,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _QuestionModel&&(identical(other.correctAnswers, correctAnswers) || other.correctAnswers == correctAnswers)&&const DeepCollectionEquality().equals(other._incorrectAnswers, _incorrectAnswers)&&(identical(other.question, question) || other.question == question)&&(identical(other.difficulty, difficulty) || other.difficulty == difficulty)&&(identical(other.category, category) || other.category == category));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _QuestionModel&&(identical(other.correctAnswer, correctAnswer) || other.correctAnswer == correctAnswer)&&const DeepCollectionEquality().equals(other._incorrectAnswers, _incorrectAnswers)&&(identical(other.question, question) || other.question == question)&&(identical(other.difficulty, difficulty) || other.difficulty == difficulty)&&(identical(other.category, category) || other.category == category));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,correctAnswers,const DeepCollectionEquality().hash(_incorrectAnswers),question,difficulty,category);
+int get hashCode => Object.hash(runtimeType,correctAnswer,const DeepCollectionEquality().hash(_incorrectAnswers),question,difficulty,category);
 
 @override
 String toString() {
-  return 'QuestionModel(correctAnswers: $correctAnswers, incorrectAnswers: $incorrectAnswers, question: $question, difficulty: $difficulty, category: $category)';
+  return 'QuestionModel(correctAnswer: $correctAnswer, incorrectAnswers: $incorrectAnswers, question: $question, difficulty: $difficulty, category: $category)';
 }
 
 
@@ -261,7 +261,7 @@ abstract mixin class _$QuestionModelCopyWith<$Res> implements $QuestionModelCopy
   factory _$QuestionModelCopyWith(_QuestionModel value, $Res Function(_QuestionModel) _then) = __$QuestionModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'correct_answers') String correctAnswers,@JsonKey(name: 'incorrect_answers') List<String> incorrectAnswers, String question, String difficulty, String category
+@JsonKey(name: 'correct_answer') String correctAnswer,@JsonKey(name: 'incorrect_answers') List<String> incorrectAnswers, String question, String? difficulty, String? category
 });
 
 
@@ -278,14 +278,14 @@ class __$QuestionModelCopyWithImpl<$Res>
 
 /// Create a copy of QuestionModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? correctAnswers = null,Object? incorrectAnswers = null,Object? question = null,Object? difficulty = null,Object? category = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? correctAnswer = null,Object? incorrectAnswers = null,Object? question = null,Object? difficulty = freezed,Object? category = freezed,}) {
   return _then(_QuestionModel(
-correctAnswers: null == correctAnswers ? _self.correctAnswers : correctAnswers // ignore: cast_nullable_to_non_nullable
+correctAnswer: null == correctAnswer ? _self.correctAnswer : correctAnswer // ignore: cast_nullable_to_non_nullable
 as String,incorrectAnswers: null == incorrectAnswers ? _self._incorrectAnswers : incorrectAnswers // ignore: cast_nullable_to_non_nullable
 as List<String>,question: null == question ? _self.question : question // ignore: cast_nullable_to_non_nullable
-as String,difficulty: null == difficulty ? _self.difficulty : difficulty // ignore: cast_nullable_to_non_nullable
-as String,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
-as String,
+as String,difficulty: freezed == difficulty ? _self.difficulty : difficulty // ignore: cast_nullable_to_non_nullable
+as String?,category: freezed == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

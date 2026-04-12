@@ -11,6 +11,22 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [BottomNavigationPage]
+class BottomNavigationRoute extends PageRouteInfo<void> {
+  const BottomNavigationRoute({List<PageRouteInfo>? children})
+    : super(BottomNavigationRoute.name, initialChildren: children);
+
+  static const String name = 'BottomNavigationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BottomNavigationPage();
+    },
+  );
+}
+
+/// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
@@ -27,19 +43,99 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MapPage]
+class MapRoute extends PageRouteInfo<void> {
+  const MapRoute({List<PageRouteInfo>? children})
+    : super(MapRoute.name, initialChildren: children);
+
+  static const String name = 'MapRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MapPage();
+    },
+  );
+}
+
+/// generated route for
+/// [ProfilePage]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute({List<PageRouteInfo>? children})
+    : super(ProfileRoute.name, initialChildren: children);
+
+  static const String name = 'ProfileRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ProfilePage();
+    },
+  );
+}
+
+/// generated route for
 /// [QuizPage]
-class QuizRoute extends PageRouteInfo<void> {
-  const QuizRoute({List<PageRouteInfo>? children})
-    : super(QuizRoute.name, initialChildren: children);
+class QuizRoute extends PageRouteInfo<QuizRouteArgs> {
+  QuizRoute({
+    Key? key,
+    required QuizParams params,
+    required String currentCategory,
+    List<PageRouteInfo>? children,
+  }) : super(
+         QuizRoute.name,
+         args: QuizRouteArgs(
+           key: key,
+           params: params,
+           currentCategory: currentCategory,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'QuizRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const QuizPage();
+      final args = data.argsAs<QuizRouteArgs>();
+      return QuizPage(
+        key: args.key,
+        params: args.params,
+        currentCategory: args.currentCategory,
+      );
     },
   );
+}
+
+class QuizRouteArgs {
+  const QuizRouteArgs({
+    this.key,
+    required this.params,
+    required this.currentCategory,
+  });
+
+  final Key? key;
+
+  final QuizParams params;
+
+  final String currentCategory;
+
+  @override
+  String toString() {
+    return 'QuizRouteArgs{key: $key, params: $params, currentCategory: $currentCategory}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! QuizRouteArgs) return false;
+    return key == other.key &&
+        params == other.params &&
+        currentCategory == other.currentCategory;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ params.hashCode ^ currentCategory.hashCode;
 }
 
 /// generated route for

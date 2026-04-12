@@ -1,12 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:qwiz_app/core/bases/base_usecase/usecase.dart';
 import 'package:qwiz_app/core/error/failure.dart';
 import 'package:qwiz_app/features/home/domain/entities/quiz_params.dart';
 import 'package:qwiz_app/features/quiz/data/datasources/quiz_remote_datasource.dart';
 import 'package:qwiz_app/features/quiz/domain/entities/question_entity.dart';
 import 'package:qwiz_app/features/quiz/domain/repository/quiz_repository.dart';
+import 'package:qwiz_app/main.dart';
+import 'package:html_unescape/html_unescape.dart';
 
 @LazySingleton(as: QuizRepository)
 class QuizRepositoryImpl extends QuizRepository {
@@ -19,15 +20,19 @@ class QuizRepositoryImpl extends QuizRepository {
     QuizParams params,
   ) async {
     try {
+      final unescape = HtmlUnescape();
       final rawList = await _remoteDataSource.getQuestions(params);
       final list = rawList
           .map(
             (e) => QuestionEntity(
-              correctAnswer: e.correctAnswers,
-              incorrectAnswers: e.incorrectAnswers,
-              question: e.question,
-              difficulty: e.difficulty,
-              category: e.category,
+              correctAnswer: unescape.convert(e.correctAnswer),
+              incorrectAnswers: e.incorrectAnswers
+                  .map((e) => unescape.convert(e))
+                  .toList(),
+              question: unescape.convert(e.question),
+              difficulty: unescape.convert(e.difficulty!),
+              category: unescape.convert(e.category!),
+              allAnswers: [e.correctAnswer, e.incorrectAnswers.toString()],
             ),
           )
           .toList();
@@ -37,8 +42,7 @@ class QuizRepositoryImpl extends QuizRepository {
         ServerFailure(message: e.response?.data['message'] ?? 'Server error'),
       );
     } catch (e, s) {
-      print(e);
-      print(s);
+      talker.handle(e, s);
       return Left(UnimplementedFailure(message: e.toString()));
     }
   }

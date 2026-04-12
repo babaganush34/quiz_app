@@ -55,11 +55,15 @@ extension HomeEventPatterns on HomeEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _LoadAllCategories value)?  loadAllCategories,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _LoadCategories value)?  loadCategories,TResult Function( _UpdateAmount value)?  updateAmount,TResult Function( _UpdateDifficulty value)?  updateDifficulty,TResult Function( _UpdateType value)?  updateType,TResult Function( _UpdateCategory value)?  updateCategory,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _LoadAllCategories() when loadAllCategories != null:
-return loadAllCategories(_that);case _:
+case _LoadCategories() when loadCategories != null:
+return loadCategories(_that);case _UpdateAmount() when updateAmount != null:
+return updateAmount(_that);case _UpdateDifficulty() when updateDifficulty != null:
+return updateDifficulty(_that);case _UpdateType() when updateType != null:
+return updateType(_that);case _UpdateCategory() when updateCategory != null:
+return updateCategory(_that);case _:
   return orElse();
 
 }
@@ -77,11 +81,15 @@ return loadAllCategories(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _LoadAllCategories value)  loadAllCategories,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _LoadCategories value)  loadCategories,required TResult Function( _UpdateAmount value)  updateAmount,required TResult Function( _UpdateDifficulty value)  updateDifficulty,required TResult Function( _UpdateType value)  updateType,required TResult Function( _UpdateCategory value)  updateCategory,}){
 final _that = this;
 switch (_that) {
-case _LoadAllCategories():
-return loadAllCategories(_that);}
+case _LoadCategories():
+return loadCategories(_that);case _UpdateAmount():
+return updateAmount(_that);case _UpdateDifficulty():
+return updateDifficulty(_that);case _UpdateType():
+return updateType(_that);case _UpdateCategory():
+return updateCategory(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -95,11 +103,15 @@ return loadAllCategories(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _LoadAllCategories value)?  loadAllCategories,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _LoadCategories value)?  loadCategories,TResult? Function( _UpdateAmount value)?  updateAmount,TResult? Function( _UpdateDifficulty value)?  updateDifficulty,TResult? Function( _UpdateType value)?  updateType,TResult? Function( _UpdateCategory value)?  updateCategory,}){
 final _that = this;
 switch (_that) {
-case _LoadAllCategories() when loadAllCategories != null:
-return loadAllCategories(_that);case _:
+case _LoadCategories() when loadCategories != null:
+return loadCategories(_that);case _UpdateAmount() when updateAmount != null:
+return updateAmount(_that);case _UpdateDifficulty() when updateDifficulty != null:
+return updateDifficulty(_that);case _UpdateType() when updateType != null:
+return updateType(_that);case _UpdateCategory() when updateCategory != null:
+return updateCategory(_that);case _:
   return null;
 
 }
@@ -116,10 +128,14 @@ return loadAllCategories(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loadAllCategories,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loadCategories,TResult Function( int amount)?  updateAmount,TResult Function( String? difficulty)?  updateDifficulty,TResult Function( String type)?  updateType,TResult Function( int? categoryId)?  updateCategory,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _LoadAllCategories() when loadAllCategories != null:
-return loadAllCategories();case _:
+case _LoadCategories() when loadCategories != null:
+return loadCategories();case _UpdateAmount() when updateAmount != null:
+return updateAmount(_that.amount);case _UpdateDifficulty() when updateDifficulty != null:
+return updateDifficulty(_that.difficulty);case _UpdateType() when updateType != null:
+return updateType(_that.type);case _UpdateCategory() when updateCategory != null:
+return updateCategory(_that.categoryId);case _:
   return orElse();
 
 }
@@ -137,10 +153,14 @@ return loadAllCategories();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loadAllCategories,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loadCategories,required TResult Function( int amount)  updateAmount,required TResult Function( String? difficulty)  updateDifficulty,required TResult Function( String type)  updateType,required TResult Function( int? categoryId)  updateCategory,}) {final _that = this;
 switch (_that) {
-case _LoadAllCategories():
-return loadAllCategories();}
+case _LoadCategories():
+return loadCategories();case _UpdateAmount():
+return updateAmount(_that.amount);case _UpdateDifficulty():
+return updateDifficulty(_that.difficulty);case _UpdateType():
+return updateType(_that.type);case _UpdateCategory():
+return updateCategory(_that.categoryId);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -154,10 +174,14 @@ return loadAllCategories();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loadAllCategories,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loadCategories,TResult? Function( int amount)?  updateAmount,TResult? Function( String? difficulty)?  updateDifficulty,TResult? Function( String type)?  updateType,TResult? Function( int? categoryId)?  updateCategory,}) {final _that = this;
 switch (_that) {
-case _LoadAllCategories() when loadAllCategories != null:
-return loadAllCategories();case _:
+case _LoadCategories() when loadCategories != null:
+return loadCategories();case _UpdateAmount() when updateAmount != null:
+return updateAmount(_that.amount);case _UpdateDifficulty() when updateDifficulty != null:
+return updateDifficulty(_that.difficulty);case _UpdateType() when updateType != null:
+return updateType(_that.type);case _UpdateCategory() when updateCategory != null:
+return updateCategory(_that.categoryId);case _:
   return null;
 
 }
@@ -168,8 +192,8 @@ return loadAllCategories();case _:
 /// @nodoc
 
 
-class _LoadAllCategories implements HomeEvent {
-  const _LoadAllCategories();
+class _LoadCategories implements HomeEvent {
+  const _LoadCategories();
   
 
 
@@ -179,7 +203,7 @@ class _LoadAllCategories implements HomeEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadAllCategories);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadCategories);
 }
 
 
@@ -188,7 +212,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'HomeEvent.loadAllCategories()';
+  return 'HomeEvent.loadCategories()';
 }
 
 
@@ -196,6 +220,270 @@ String toString() {
 
 
 
+
+/// @nodoc
+
+
+class _UpdateAmount implements HomeEvent {
+  const _UpdateAmount(this.amount);
+  
+
+ final  int amount;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UpdateAmountCopyWith<_UpdateAmount> get copyWith => __$UpdateAmountCopyWithImpl<_UpdateAmount>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateAmount&&(identical(other.amount, amount) || other.amount == amount));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,amount);
+
+@override
+String toString() {
+  return 'HomeEvent.updateAmount(amount: $amount)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$UpdateAmountCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
+  factory _$UpdateAmountCopyWith(_UpdateAmount value, $Res Function(_UpdateAmount) _then) = __$UpdateAmountCopyWithImpl;
+@useResult
+$Res call({
+ int amount
+});
+
+
+
+
+}
+/// @nodoc
+class __$UpdateAmountCopyWithImpl<$Res>
+    implements _$UpdateAmountCopyWith<$Res> {
+  __$UpdateAmountCopyWithImpl(this._self, this._then);
+
+  final _UpdateAmount _self;
+  final $Res Function(_UpdateAmount) _then;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? amount = null,}) {
+  return _then(_UpdateAmount(
+null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _UpdateDifficulty implements HomeEvent {
+  const _UpdateDifficulty(this.difficulty);
+  
+
+ final  String? difficulty;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UpdateDifficultyCopyWith<_UpdateDifficulty> get copyWith => __$UpdateDifficultyCopyWithImpl<_UpdateDifficulty>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateDifficulty&&(identical(other.difficulty, difficulty) || other.difficulty == difficulty));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,difficulty);
+
+@override
+String toString() {
+  return 'HomeEvent.updateDifficulty(difficulty: $difficulty)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$UpdateDifficultyCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
+  factory _$UpdateDifficultyCopyWith(_UpdateDifficulty value, $Res Function(_UpdateDifficulty) _then) = __$UpdateDifficultyCopyWithImpl;
+@useResult
+$Res call({
+ String? difficulty
+});
+
+
+
+
+}
+/// @nodoc
+class __$UpdateDifficultyCopyWithImpl<$Res>
+    implements _$UpdateDifficultyCopyWith<$Res> {
+  __$UpdateDifficultyCopyWithImpl(this._self, this._then);
+
+  final _UpdateDifficulty _self;
+  final $Res Function(_UpdateDifficulty) _then;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? difficulty = freezed,}) {
+  return _then(_UpdateDifficulty(
+freezed == difficulty ? _self.difficulty : difficulty // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _UpdateType implements HomeEvent {
+  const _UpdateType(this.type);
+  
+
+ final  String type;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UpdateTypeCopyWith<_UpdateType> get copyWith => __$UpdateTypeCopyWithImpl<_UpdateType>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateType&&(identical(other.type, type) || other.type == type));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,type);
+
+@override
+String toString() {
+  return 'HomeEvent.updateType(type: $type)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$UpdateTypeCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
+  factory _$UpdateTypeCopyWith(_UpdateType value, $Res Function(_UpdateType) _then) = __$UpdateTypeCopyWithImpl;
+@useResult
+$Res call({
+ String type
+});
+
+
+
+
+}
+/// @nodoc
+class __$UpdateTypeCopyWithImpl<$Res>
+    implements _$UpdateTypeCopyWith<$Res> {
+  __$UpdateTypeCopyWithImpl(this._self, this._then);
+
+  final _UpdateType _self;
+  final $Res Function(_UpdateType) _then;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? type = null,}) {
+  return _then(_UpdateType(
+null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _UpdateCategory implements HomeEvent {
+  const _UpdateCategory(this.categoryId);
+  
+
+ final  int? categoryId;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UpdateCategoryCopyWith<_UpdateCategory> get copyWith => __$UpdateCategoryCopyWithImpl<_UpdateCategory>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateCategory&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,categoryId);
+
+@override
+String toString() {
+  return 'HomeEvent.updateCategory(categoryId: $categoryId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$UpdateCategoryCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
+  factory _$UpdateCategoryCopyWith(_UpdateCategory value, $Res Function(_UpdateCategory) _then) = __$UpdateCategoryCopyWithImpl;
+@useResult
+$Res call({
+ int? categoryId
+});
+
+
+
+
+}
+/// @nodoc
+class __$UpdateCategoryCopyWithImpl<$Res>
+    implements _$UpdateCategoryCopyWith<$Res> {
+  __$UpdateCategoryCopyWithImpl(this._self, this._then);
+
+  final _UpdateCategory _self;
+  final $Res Function(_UpdateCategory) _then;
+
+/// Create a copy of HomeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? categoryId = freezed,}) {
+  return _then(_UpdateCategory(
+freezed == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+
+}
 
 /// @nodoc
 mixin _$HomeState {
@@ -311,13 +599,13 @@ return loadedCategories(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int amount,  String difficulty,  String type,  int? categoryId)?  initial,TResult Function()?  loading,TResult Function( Failure failure)?  error,TResult Function( List<CategoriesEntity> categories)?  loadedCategories,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int amount,  String difficulty,  String type,  int? categoryId)?  initial,TResult Function()?  loading,TResult Function( Failure failure)?  error,TResult Function( List<CategoriesEntity> categories,  int amount,  String difficulty,  String type,  int? categoryId)?  loadedCategories,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that.amount,_that.difficulty,_that.type,_that.categoryId);case _Loading() when loading != null:
 return loading();case _Error() when error != null:
 return error(_that.failure);case _LoadedCategories() when loadedCategories != null:
-return loadedCategories(_that.categories);case _:
+return loadedCategories(_that.categories,_that.amount,_that.difficulty,_that.type,_that.categoryId);case _:
   return orElse();
 
 }
@@ -335,13 +623,13 @@ return loadedCategories(_that.categories);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int amount,  String difficulty,  String type,  int? categoryId)  initial,required TResult Function()  loading,required TResult Function( Failure failure)  error,required TResult Function( List<CategoriesEntity> categories)  loadedCategories,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int amount,  String difficulty,  String type,  int? categoryId)  initial,required TResult Function()  loading,required TResult Function( Failure failure)  error,required TResult Function( List<CategoriesEntity> categories,  int amount,  String difficulty,  String type,  int? categoryId)  loadedCategories,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial(_that.amount,_that.difficulty,_that.type,_that.categoryId);case _Loading():
 return loading();case _Error():
 return error(_that.failure);case _LoadedCategories():
-return loadedCategories(_that.categories);}
+return loadedCategories(_that.categories,_that.amount,_that.difficulty,_that.type,_that.categoryId);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -355,13 +643,13 @@ return loadedCategories(_that.categories);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int amount,  String difficulty,  String type,  int? categoryId)?  initial,TResult? Function()?  loading,TResult? Function( Failure failure)?  error,TResult? Function( List<CategoriesEntity> categories)?  loadedCategories,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int amount,  String difficulty,  String type,  int? categoryId)?  initial,TResult? Function()?  loading,TResult? Function( Failure failure)?  error,TResult? Function( List<CategoriesEntity> categories,  int amount,  String difficulty,  String type,  int? categoryId)?  loadedCategories,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that.amount,_that.difficulty,_that.type,_that.categoryId);case _Loading() when loading != null:
 return loading();case _Error() when error != null:
 return error(_that.failure);case _LoadedCategories() when loadedCategories != null:
-return loadedCategories(_that.categories);case _:
+return loadedCategories(_that.categories,_that.amount,_that.difficulty,_that.type,_that.categoryId);case _:
   return null;
 
 }
@@ -543,7 +831,7 @@ as Failure,
 
 
 class _LoadedCategories implements HomeState {
-  const _LoadedCategories(final  List<CategoriesEntity> categories): _categories = categories;
+  const _LoadedCategories({required final  List<CategoriesEntity> categories, this.amount = 10, this.difficulty = 'medium', this.type = 'multiple', this.categoryId}): _categories = categories;
   
 
  final  List<CategoriesEntity> _categories;
@@ -553,6 +841,10 @@ class _LoadedCategories implements HomeState {
   return EqualUnmodifiableListView(_categories);
 }
 
+@JsonKey() final  int amount;
+@JsonKey() final  String difficulty;
+@JsonKey() final  String type;
+ final  int? categoryId;
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
@@ -564,16 +856,16 @@ _$LoadedCategoriesCopyWith<_LoadedCategories> get copyWith => __$LoadedCategorie
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadedCategories&&const DeepCollectionEquality().equals(other._categories, _categories));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadedCategories&&const DeepCollectionEquality().equals(other._categories, _categories)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.difficulty, difficulty) || other.difficulty == difficulty)&&(identical(other.type, type) || other.type == type)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_categories));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_categories),amount,difficulty,type,categoryId);
 
 @override
 String toString() {
-  return 'HomeState.loadedCategories(categories: $categories)';
+  return 'HomeState.loadedCategories(categories: $categories, amount: $amount, difficulty: $difficulty, type: $type, categoryId: $categoryId)';
 }
 
 
@@ -584,7 +876,7 @@ abstract mixin class _$LoadedCategoriesCopyWith<$Res> implements $HomeStateCopyW
   factory _$LoadedCategoriesCopyWith(_LoadedCategories value, $Res Function(_LoadedCategories) _then) = __$LoadedCategoriesCopyWithImpl;
 @useResult
 $Res call({
- List<CategoriesEntity> categories
+ List<CategoriesEntity> categories, int amount, String difficulty, String type, int? categoryId
 });
 
 
@@ -601,10 +893,14 @@ class __$LoadedCategoriesCopyWithImpl<$Res>
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? categories = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? categories = null,Object? amount = null,Object? difficulty = null,Object? type = null,Object? categoryId = freezed,}) {
   return _then(_LoadedCategories(
-null == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
-as List<CategoriesEntity>,
+categories: null == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
+as List<CategoriesEntity>,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as int,difficulty: null == difficulty ? _self.difficulty : difficulty // ignore: cast_nullable_to_non_nullable
+as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String,categoryId: freezed == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 

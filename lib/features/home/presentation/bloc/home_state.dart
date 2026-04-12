@@ -10,6 +10,11 @@ sealed class HomeState with _$HomeState {
   }) = _Initial;
   const factory HomeState.loading() = _Loading;
   const factory HomeState.error(Failure failure) = _Error;
-  const factory HomeState.loadedCategories(List<CategoriesEntity> categories) =
-      _LoadedCategories;
+  const factory HomeState.loadedCategories({
+    required List<CategoriesEntity> categories,
+    @Default(10) int amount,
+    @Default('medium') String difficulty,
+    @Default('multiple') String type,
+    int? categoryId,
+  }) = _LoadedCategories;
 }
