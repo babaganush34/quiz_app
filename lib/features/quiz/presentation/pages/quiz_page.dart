@@ -6,6 +6,7 @@ import 'package:qwiz_app/core/router/app_router.dart';
 import 'package:qwiz_app/features/home/domain/entities/quiz_params.dart';
 import 'package:qwiz_app/features/quiz/presentation/bloc/quiz_bloc.dart';
 import 'package:qwiz_app/features/quiz/presentation/widgets/answer_widget.dart';
+import 'package:qwiz_app/features/quiz/presentation/widgets/next_button_widget.dart';
 
 @RoutePage()
 class QuizPage extends StatefulWidget {
@@ -114,8 +115,7 @@ class _QuizPageState extends State<QuizPage> {
               return Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment
-                      .stretch,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     LinearProgressIndicator(
                       value: (currentIndex + 1) / questions.length,
@@ -155,41 +155,6 @@ class _QuizPageState extends State<QuizPage> {
                 const Center(child: Text('Result')),
           );
         },
-      ),
-    );
-  }
-}
-
-class NextButtonWidget extends StatelessWidget {
-  final VoidCallback onTap;
-  const NextButtonWidget({super.key, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.green,
-        ),
-        child: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Next',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
-            SizedBox(width: 8),
-            Icon(Icons.arrow_forward_ios, color: Colors.white, size: 18),
-          ],
-        ),
       ),
     );
   }

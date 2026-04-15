@@ -5,8 +5,8 @@ import 'package:qwiz_app/core/router/bottom_navigation/bottom_navigation_page.da
 import 'package:qwiz_app/core/router/talker_page/talker_page.dart';
 import 'package:qwiz_app/features/home/domain/entities/quiz_params.dart';
 import 'package:qwiz_app/features/home/presentation/pages/home_page.dart';
-import 'package:qwiz_app/features/map/presentation/pages/map_page.dart';
-import 'package:qwiz_app/features/profile/presentation/pages/profile_page.dart';
+import 'package:qwiz_app/features/history/presentation/pages/history_page.dart';
+import 'package:qwiz_app/features/settings/presentation/pages/settings_page.dart';
 import 'package:qwiz_app/features/quiz/presentation/pages/quiz_page.dart';
 import 'package:qwiz_app/features/result/presentation/result_page.dart';
 
@@ -25,8 +25,8 @@ class AppRouter extends RootStackRouter {
       initial: true,
       children: [
         AutoRoute(page: HomeRoute.page, initial: true),
-        AutoRoute(page: MapRoute.page),
-        AutoRoute(page: ProfileRoute.page),
+        AutoRoute(page: HistoryRoute.page),
+        AutoRoute(page: SettingsRoute.page),
       ],
     ),
   ];

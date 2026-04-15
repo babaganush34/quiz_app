@@ -9,7 +9,7 @@ class BottomNavigationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
-      routes: [HomeRoute(), MapRoute(), ProfileRoute()],
+      routes: [HomeRoute(), HistoryRoute(), SettingsRoute()],
       bottomNavigationBuilder: (context, tabsRouter) {
         return BottomNavigationBar(
           currentIndex: tabsRouter.activeIndex,
@@ -17,18 +17,18 @@ class BottomNavigationPage extends StatelessWidget {
           items: [
             BottomNavigationBarItem(
               label: 'Home',
-              icon: Icon(Icons.explore_outlined),
-              activeIcon: Icon(Icons.explore),
+              icon: Icon(Icons.home_outlined),
+              activeIcon: Icon(Icons.home),
             ),
             BottomNavigationBarItem(
-              label: 'Map',
-              icon: Icon(Icons.map_outlined),
-              activeIcon: Icon(Icons.map),
+              label: 'History',
+              icon: Icon(Icons.history_outlined),
+              activeIcon: Icon(Icons.history),
             ),
             BottomNavigationBarItem(
-              label: 'Profile',
-              icon: Icon(Icons.person_2_outlined),
-              activeIcon: Icon(Icons.person_2),
+              label: 'Settings',
+              icon: Icon(Icons.settings_outlined),
+              activeIcon: Icon(Icons.settings),
             ),
           ],
         );

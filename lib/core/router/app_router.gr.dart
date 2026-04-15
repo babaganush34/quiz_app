@@ -43,33 +43,33 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [MapPage]
-class MapRoute extends PageRouteInfo<void> {
-  const MapRoute({List<PageRouteInfo>? children})
-    : super(MapRoute.name, initialChildren: children);
+/// [HistoryPage]
+class HistoryRoute extends PageRouteInfo<void> {
+  const HistoryRoute({List<PageRouteInfo>? children})
+    : super(HistoryRoute.name, initialChildren: children);
 
   static const String name = 'MapRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const MapPage();
+      return const HistoryPage();
     },
   );
 }
 
 /// generated route for
-/// [ProfilePage]
-class ProfileRoute extends PageRouteInfo<void> {
-  const ProfileRoute({List<PageRouteInfo>? children})
-    : super(ProfileRoute.name, initialChildren: children);
+/// [SettingsPage]
+class SettingsRoute extends PageRouteInfo<void> {
+  const SettingsRoute({List<PageRouteInfo>? children})
+    : super(SettingsRoute.name, initialChildren: children);
 
   static const String name = 'ProfileRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const ProfilePage();
+      return const SettingsPage();
     },
   );
 }
