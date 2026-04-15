@@ -14,6 +14,7 @@ part 'quiz_bloc.freezed.dart';
 @lazySingleton
 class QuizBloc extends BaseBloc<QuizEvent, QuizState> {
   final GetQuestionsUsecase _getQuestionsUsecase;
+  late QuizParams _currentParams;
 
   QuizBloc({required GetQuestionsUsecase getQuestionsUsecase})
     : _getQuestionsUsecase = getQuestionsUsecase,
@@ -31,6 +32,7 @@ class QuizBloc extends BaseBloc<QuizEvent, QuizState> {
     Emitter<QuizState> emit,
   ) async {
     emit(QuizState.loading());
+    _currentParams = params;
     final result = await _getQuestionsUsecase.call(params);
     result.fold(
       (error) => emit(QuizState.error(error)),
@@ -54,7 +56,11 @@ class QuizBloc extends BaseBloc<QuizEvent, QuizState> {
 
     if (nextIndex >= current.questions.length) {
       emit(
-        QuizState.finished(score: newScore, total: current.questions.length),
+        QuizState.finished(
+          score: newScore,
+          total: current.questions.length,
+          params: _currentParams,
+        ),
       );
     } else {
       emit(

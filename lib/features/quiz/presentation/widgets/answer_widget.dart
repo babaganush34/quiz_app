@@ -22,6 +22,8 @@ class AnswerWidget extends StatefulWidget {
 class _AnswerWidgetState extends State<AnswerWidget> {
   @override
   Widget build(BuildContext context) {
+    final status = widget.status;
+
     return InkWell(
       onTap: () {
         widget.onTap();
@@ -31,14 +33,14 @@ class _AnswerWidgetState extends State<AnswerWidget> {
         height: 60,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: widget.status.statusColor,
-          border: BoxBorder.all(color: widget.status.borderColor),
+          color: status.statusColor,
+          border: BoxBorder.all(color: status.borderColor),
         ),
         child: Align(
           alignment: AlignmentGeometry.center,
           child: Text(
             widget.answer,
-            style: TextStyle(fontSize: 20, color: widget.status.titleColor),
+            style: TextStyle(fontSize: 20, color: status.titleColor),
           ),
         ),
       ),

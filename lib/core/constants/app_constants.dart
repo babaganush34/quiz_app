@@ -6,4 +6,6 @@ class AppConstants {
   static const appName = 'Quiz';
 
   static const appIllustrationImage = 'assets/images/app_illustration.png';
+
+  static const quizDoneMarkImage = 'assets/images/done_mark.png';
 }

@@ -139,19 +139,75 @@ class QuizRouteArgs {
 }
 
 /// generated route for
-/// [ResultsPage]
-class ResultsRoute extends PageRouteInfo<void> {
-  const ResultsRoute({List<PageRouteInfo>? children})
-    : super(ResultsRoute.name, initialChildren: children);
+/// [ResultPage]
+class ResultRoute extends PageRouteInfo<ResultRouteArgs> {
+  ResultRoute({
+    Key? key,
+    required QuizParams params,
+    required int score,
+    required int total,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ResultRoute.name,
+         args: ResultRouteArgs(
+           key: key,
+           params: params,
+           score: score,
+           total: total,
+         ),
+         initialChildren: children,
+       );
 
-  static const String name = 'ResultsRoute';
+  static const String name = 'ResultRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const ResultsPage();
+      final args = data.argsAs<ResultRouteArgs>();
+      return ResultPage(
+        key: args.key,
+        params: args.params,
+        score: args.score,
+        total: args.total,
+      );
     },
   );
+}
+
+class ResultRouteArgs {
+  const ResultRouteArgs({
+    this.key,
+    required this.params,
+    required this.score,
+    required this.total,
+  });
+
+  final Key? key;
+
+  final QuizParams params;
+
+  final int score;
+
+  final int total;
+
+  @override
+  String toString() {
+    return 'ResultRouteArgs{key: $key, params: $params, score: $score, total: $total}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ResultRouteArgs) return false;
+    return key == other.key &&
+        params == other.params &&
+        score == other.score &&
+        total == other.total;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^ params.hashCode ^ score.hashCode ^ total.hashCode;
 }
 
 /// generated route for

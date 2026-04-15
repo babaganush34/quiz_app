@@ -5,7 +5,7 @@ import 'package:qwiz_app/core/di/inject_module.dart';
 import 'package:qwiz_app/core/router/app_router.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger.dart';
-// import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 final talker = Talker(
   settings: TalkerSettings(enabled: true, useConsoleLogs: true),
@@ -19,8 +19,8 @@ final talker = Talker(
 );
 
 Future<void> main() async {
-  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await configureDependencies();
   getIt.registerSingleton<Talker>(talker);
   Bloc.observer = TalkerBlocObserver(

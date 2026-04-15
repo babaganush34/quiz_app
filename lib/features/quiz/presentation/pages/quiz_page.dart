@@ -26,6 +26,8 @@ class _QuizPageState extends State<QuizPage> {
   Map<String, AnswerStatus> answerStatuses = {};
   List<String> allAnswers = [];
   bool _isAnswering = false;
+  bool _showNextButton = false;
+  String? _selectedAnswer;
 
   @override
   void initState() {
@@ -35,29 +37,35 @@ class _QuizPageState extends State<QuizPage> {
 
   void _onAnswerTap(String answer, String correctAnswer) {
     if (_isAnswering) return;
-    _isAnswering = true;
 
     setState(() {
+      _isAnswering = true;
+      _selectedAnswer = answer;
       answerStatuses[answer] = AnswerStatus.selected;
     });
-
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 1000), () {
       if (!mounted) return;
       setState(() {
         for (final a in allAnswers) {
           answerStatuses[a] = a == correctAnswer
               ? AnswerStatus.correct
-              : AnswerStatus.incorrect;
+              : (a == _selectedAnswer
+                    ? AnswerStatus.incorrect
+                    : AnswerStatus.notSelected);
         }
+        _showNextButton = true;
       });
     });
-    Future.delayed(const Duration(milliseconds: 1500), () {
-      if (!mounted) return;
-      _bloc.add(QuizEvent.answerSelected(answer));
-      setState(() {
-        answerStatuses = {};
-        _isAnswering = false;
-      });
+  }
+
+  void _goToNextQuestion() {
+    if (_selectedAnswer == null) return;
+    _bloc.add(QuizEvent.answerSelected(_selectedAnswer!));
+    setState(() {
+      answerStatuses = {};
+      _isAnswering = false;
+      _showNextButton = false;
+      _selectedAnswer = null;
     });
   }
 
@@ -89,6 +97,11 @@ class _QuizPageState extends State<QuizPage> {
                 allAnswers = [correct, ...incorrect]..shuffle();
               });
             },
+            finished: (params, score, total) {
+              getIt<AppRouter>().replaceAll([
+                ResultRoute(total: total, score: score, params: params),
+              ]);
+            },
           );
         },
         builder: (context, state) {
@@ -101,7 +114,8 @@ class _QuizPageState extends State<QuizPage> {
               return Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment
+                      .stretch,
                   children: [
                     LinearProgressIndicator(
                       value: (currentIndex + 1) / questions.length,
@@ -129,18 +143,53 @@ class _QuizPageState extends State<QuizPage> {
                         ),
                       ),
                     ),
+                    const Spacer(),
+                    // Кнопка Next
+                    if (_showNextButton)
+                      NextButtonWidget(onTap: _goToNextQuestion),
                   ],
                 ),
               );
             },
-            finished: (score, total) => Center(
-              child: Text(
-                'Результат: $score / $total',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-            ),
+            finished: (params, score, total) =>
+                const Center(child: Text('Result')),
           );
         },
+      ),
+    );
+  }
+}
+
+class NextButtonWidget extends StatelessWidget {
+  final VoidCallback onTap;
+  const NextButtonWidget({super.key, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: Colors.green,
+        ),
+        child: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Next',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+            SizedBox(width: 8),
+            Icon(Icons.arrow_forward_ios, color: Colors.white, size: 18),
+          ],
+        ),
       ),
     );
   }

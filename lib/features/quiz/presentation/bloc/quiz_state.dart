@@ -10,6 +10,9 @@ sealed class QuizState with _$QuizState {
     required int currentIndex,
     required int score,
   }) = _LoadedQuestions;
-  const factory QuizState.finished({required int score, required int total}) =
-      _Finished;
+  const factory QuizState.finished({
+    required QuizParams params,
+    required int score,
+    required int total,
+  }) = _Finished;
 }

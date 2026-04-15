@@ -420,14 +420,14 @@ return finished(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( Failure failure)?  error,TResult Function( List<QuestionEntity> questions,  int currentIndex,  int score)?  loadedQuestions,TResult Function( int score,  int total)?  finished,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( Failure failure)?  error,TResult Function( List<QuestionEntity> questions,  int currentIndex,  int score)?  loadedQuestions,TResult Function( QuizParams params,  int score,  int total)?  finished,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Error() when error != null:
 return error(_that.failure);case _LoadedQuestions() when loadedQuestions != null:
 return loadedQuestions(_that.questions,_that.currentIndex,_that.score);case _Finished() when finished != null:
-return finished(_that.score,_that.total);case _:
+return finished(_that.params,_that.score,_that.total);case _:
   return orElse();
 
 }
@@ -445,14 +445,14 @@ return finished(_that.score,_that.total);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( Failure failure)  error,required TResult Function( List<QuestionEntity> questions,  int currentIndex,  int score)  loadedQuestions,required TResult Function( int score,  int total)  finished,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( Failure failure)  error,required TResult Function( List<QuestionEntity> questions,  int currentIndex,  int score)  loadedQuestions,required TResult Function( QuizParams params,  int score,  int total)  finished,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Error():
 return error(_that.failure);case _LoadedQuestions():
 return loadedQuestions(_that.questions,_that.currentIndex,_that.score);case _Finished():
-return finished(_that.score,_that.total);}
+return finished(_that.params,_that.score,_that.total);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -466,14 +466,14 @@ return finished(_that.score,_that.total);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( Failure failure)?  error,TResult? Function( List<QuestionEntity> questions,  int currentIndex,  int score)?  loadedQuestions,TResult? Function( int score,  int total)?  finished,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( Failure failure)?  error,TResult? Function( List<QuestionEntity> questions,  int currentIndex,  int score)?  loadedQuestions,TResult? Function( QuizParams params,  int score,  int total)?  finished,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Error() when error != null:
 return error(_that.failure);case _LoadedQuestions() when loadedQuestions != null:
 return loadedQuestions(_that.questions,_that.currentIndex,_that.score);case _Finished() when finished != null:
-return finished(_that.score,_that.total);case _:
+return finished(_that.params,_that.score,_that.total);case _:
   return null;
 
 }
@@ -691,9 +691,10 @@ as int,
 
 
 class _Finished implements QuizState {
-  const _Finished({required this.score, required this.total});
+  const _Finished({required this.params, required this.score, required this.total});
   
 
+ final  QuizParams params;
  final  int score;
  final  int total;
 
@@ -707,16 +708,16 @@ _$FinishedCopyWith<_Finished> get copyWith => __$FinishedCopyWithImpl<_Finished>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Finished&&(identical(other.score, score) || other.score == score)&&(identical(other.total, total) || other.total == total));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Finished&&(identical(other.params, params) || other.params == params)&&(identical(other.score, score) || other.score == score)&&(identical(other.total, total) || other.total == total));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,score,total);
+int get hashCode => Object.hash(runtimeType,params,score,total);
 
 @override
 String toString() {
-  return 'QuizState.finished(score: $score, total: $total)';
+  return 'QuizState.finished(params: $params, score: $score, total: $total)';
 }
 
 
@@ -727,7 +728,7 @@ abstract mixin class _$FinishedCopyWith<$Res> implements $QuizStateCopyWith<$Res
   factory _$FinishedCopyWith(_Finished value, $Res Function(_Finished) _then) = __$FinishedCopyWithImpl;
 @useResult
 $Res call({
- int score, int total
+ QuizParams params, int score, int total
 });
 
 
@@ -744,9 +745,10 @@ class __$FinishedCopyWithImpl<$Res>
 
 /// Create a copy of QuizState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? score = null,Object? total = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? params = null,Object? score = null,Object? total = null,}) {
   return _then(_Finished(
-score: null == score ? _self.score : score // ignore: cast_nullable_to_non_nullable
+params: null == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as QuizParams,score: null == score ? _self.score : score // ignore: cast_nullable_to_non_nullable
 as int,total: null == total ? _self.total : total // ignore: cast_nullable_to_non_nullable
 as int,
   ));
