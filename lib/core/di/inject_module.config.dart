@@ -41,6 +41,12 @@ import '../../features/result/domain/repository/result_repository.dart'
     as _i675;
 import '../../features/result/domain/usecases/insert_quiz_usecase.dart' as _i90;
 import '../../features/result/presentation/bloc/result_bloc.dart' as _i1062;
+import '../../features/settings/data/settings_repository_impl.dart' as _i659;
+import '../../features/settings/domain/repository/settings_repository.dart'
+    as _i187;
+import '../../features/settings/domain/usecases/clear_history_usecase.dart'
+    as _i717;
+import '../../features/settings/presentation/bloc/settings_bloc.dart' as _i585;
 import '../database/app_database.dart' as _i982;
 import '../router/app_router.dart' as _i81;
 import 'inject_module.dart' as _i394;
@@ -59,6 +65,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i81.AppRouter>(() => _i81.AppRouter());
     gh.lazySingleton<_i757.HistoryRepository>(
       () => _i443.HistoryRepositoryImpl(db: gh<_i982.AppDatabase>()),
+    );
+    gh.lazySingleton<_i187.SettingsRepository>(
+      () => _i659.SettingsRepositoryImpl(db: gh<_i982.AppDatabase>()),
     );
     gh.lazySingleton<_i840.GetHistoryUsecase>(
       () => _i840.GetHistoryUsecase(repository: gh<_i757.HistoryRepository>()),
@@ -82,6 +91,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i401.GetQuestionsUsecase>(
       () => _i401.GetQuestionsUsecase(gh<_i488.QuizRepository>()),
     );
+    gh.lazySingleton<_i717.ClearHistoryUsecase>(
+      () =>
+          _i717.ClearHistoryUsecase(repository: gh<_i187.SettingsRepository>()),
+    );
     gh.lazySingleton<_i541.HomeRepository>(
       () => _i60.HomeRepositoreImpl(
         remoteDataSource: gh<_i278.HomeRemoteDatasource>(),
@@ -90,6 +103,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i505.QuizBloc>(
       () =>
           _i505.QuizBloc(getQuestionsUsecase: gh<_i401.GetQuestionsUsecase>()),
+    );
+    gh.lazySingleton<_i585.SettingsBloc>(
+      () => _i585.SettingsBloc(
+        clearHistoryUsecase: gh<_i717.ClearHistoryUsecase>(),
+      ),
     );
     gh.lazySingleton<_i1062.ResultBloc>(
       () => _i1062.ResultBloc(insertQuizUsecase: gh<_i90.InsertQuizUsecase>()),

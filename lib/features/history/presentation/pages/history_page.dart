@@ -44,6 +44,20 @@ class _HistoryPageState extends State<HistoryPage> {
               return Center(child: Text(message));
             },
             loaded: (historyList) {
+              if (historyList.isEmpty) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.clear, color: Colors.grey),
+                      Text(
+                        'No history yet...',
+                        style: TextStyle(fontSize: 20, color: Colors.grey),
+                      ),
+                    ],
+                  ),
+                );
+              }
               return ListView.builder(
                 itemCount: historyList.length,
                 itemBuilder: (BuildContext context, int index) {
