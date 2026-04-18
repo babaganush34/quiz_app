@@ -12,24 +12,6 @@ class HistoryRepositoryImpl implements HistoryRepository {
   final AppDatabase db;
 
   @override
-  Future<Either<Failure, HistoryEntity>> insertHistory(HistoryEntity h) async {
-    try {
-      final id = await db.insertHistory(
-        HistoryTableCompanion.insert(
-          category: h.category,
-          score: h.score,
-          total: h.total,
-          difficulty: h.difficulty,
-          date: DateTime.now(),
-        ),
-      );
-      return Right(h.copyWith(id: id));
-    } catch (e) {
-      return Left(UnimplementedFailure(message: e.toString()));
-    }
-  }
-
-  @override
   Future<Either<Failure, List<HistoryEntity>>> getHistory() async {
     try {
       final result = await db.getAllHistory();

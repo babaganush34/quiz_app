@@ -3,12 +3,14 @@ import 'package:injectable/injectable.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:qwiz_app/core/router/bottom_navigation/bottom_navigation_page.dart';
 import 'package:qwiz_app/core/router/talker_page/talker_page.dart';
+import 'package:qwiz_app/features/history/domain/entities/history_entity.dart';
 import 'package:qwiz_app/features/home/domain/entities/quiz_params.dart';
 import 'package:qwiz_app/features/home/presentation/pages/home_page.dart';
 import 'package:qwiz_app/features/history/presentation/pages/history_page.dart';
+import 'package:qwiz_app/features/result/domain/entities/result_entity.dart';
 import 'package:qwiz_app/features/settings/presentation/pages/settings_page.dart';
 import 'package:qwiz_app/features/quiz/presentation/pages/quiz_page.dart';
-import 'package:qwiz_app/features/result/presentation/result_page.dart';
+import 'package:qwiz_app/features/result/presentation/pages/result_page.dart';
 
 part 'app_router.gr.dart';
 

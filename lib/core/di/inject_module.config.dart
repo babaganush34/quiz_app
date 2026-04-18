@@ -17,6 +17,9 @@ import '../../features/history/data/repository_impl/history_repository_impl.dart
     as _i443;
 import '../../features/history/domain/repository/history_repository.dart'
     as _i757;
+import '../../features/history/domain/usecases/get_history_usecase.dart'
+    as _i840;
+import '../../features/history/presentation/bloc/history_bloc.dart' as _i1070;
 import '../../features/home/data/datasources/home_remote_datasource.dart'
     as _i278;
 import '../../features/home/data/repository_impl/home_repository_impl.dart'
@@ -33,6 +36,11 @@ import '../../features/quiz/domain/repository/quiz_repository.dart' as _i488;
 import '../../features/quiz/domain/usecases/get_questions_usecase.dart'
     as _i401;
 import '../../features/quiz/presentation/bloc/quiz_bloc.dart' as _i505;
+import '../../features/result/data/result_repository_impl.dart' as _i545;
+import '../../features/result/domain/repository/result_repository.dart'
+    as _i675;
+import '../../features/result/domain/usecases/insert_quiz_usecase.dart' as _i90;
+import '../../features/result/presentation/bloc/result_bloc.dart' as _i1062;
 import '../database/app_database.dart' as _i982;
 import '../router/app_router.dart' as _i81;
 import 'inject_module.dart' as _i394;
@@ -52,11 +60,24 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i757.HistoryRepository>(
       () => _i443.HistoryRepositoryImpl(db: gh<_i982.AppDatabase>()),
     );
+    gh.lazySingleton<_i840.GetHistoryUsecase>(
+      () => _i840.GetHistoryUsecase(repository: gh<_i757.HistoryRepository>()),
+    );
+    gh.lazySingleton<_i675.ResultRepository>(
+      () => _i545.ResultRepositoryImpl(db: gh<_i982.AppDatabase>()),
+    );
     gh.factory<_i278.HomeRemoteDatasource>(
       () => _i278.HomeRemoteDatasource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i1070.HistoryBloc>(
+      () =>
+          _i1070.HistoryBloc(getHistoryUsecase: gh<_i840.GetHistoryUsecase>()),
+    );
     gh.lazySingleton<_i488.QuizRepository>(
       () => _i521.QuizRepositoryImpl(gh<_i189.QuizRemoteDatasource>()),
+    );
+    gh.lazySingleton<_i90.InsertQuizUsecase>(
+      () => _i90.InsertQuizUsecase(repository: gh<_i675.ResultRepository>()),
     );
     gh.lazySingleton<_i401.GetQuestionsUsecase>(
       () => _i401.GetQuestionsUsecase(gh<_i488.QuizRepository>()),
@@ -69,6 +90,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i505.QuizBloc>(
       () =>
           _i505.QuizBloc(getQuestionsUsecase: gh<_i401.GetQuestionsUsecase>()),
+    );
+    gh.lazySingleton<_i1062.ResultBloc>(
+      () => _i1062.ResultBloc(insertQuizUsecase: gh<_i90.InsertQuizUsecase>()),
     );
     gh.lazySingleton<_i967.GetCategoriesUsecase>(
       () => _i967.GetCategoriesUsecase(repository: gh<_i541.HomeRepository>()),

@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:qwiz_app/core/constants/app_constants.dart';
+import 'package:qwiz_app/core/di/inject_module.dart';
 import 'package:qwiz_app/features/home/domain/entities/quiz_params.dart';
-import 'package:qwiz_app/features/result/presentation/finish_button_widget.dart';
+import 'package:qwiz_app/features/result/domain/entities/result_entity.dart';
+import 'package:qwiz_app/features/result/presentation/bloc/result_bloc.dart';
+import 'package:qwiz_app/features/result/presentation/widgets/finish_button_widget.dart';
 
 @RoutePage()
 class ResultPage extends StatelessWidget {
@@ -11,15 +14,19 @@ class ResultPage extends StatelessWidget {
     required this.params,
     required this.score,
     required this.total,
+    required this.resultEntity,
   });
+  final ResultEntity resultEntity;
   final QuizParams params;
   final int score;
   final int total;
 
   @override
   Widget build(BuildContext context) {
+    final bloc = getIt<ResultBloc>();
     double result = score / total * 100;
     String formatted = result.toStringAsFixed(2);
+
     return Scaffold(
       appBar: AppBar(title: Text('Result')),
       body: Padding(
@@ -51,12 +58,22 @@ class ResultPage extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(25.0),
-                      child: Text(
-                        'Category: ${params.categoryId}',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Category:',
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            '${resultEntity.category}',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Padding(
@@ -132,7 +149,12 @@ class ResultPage extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            FinishButtonWidget(),
+            FinishButtonWidget(
+              bloc: bloc,
+              entity: resultEntity,
+              score: score,
+              total: total,
+            ),
           ],
         ),
       ),

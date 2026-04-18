@@ -130,6 +130,7 @@ class ResultRoute extends PageRouteInfo<ResultRouteArgs> {
     required QuizParams params,
     required int score,
     required int total,
+    required ResultEntity resultEntity,
     List<PageRouteInfo>? children,
   }) : super(
          ResultRoute.name,
@@ -138,6 +139,7 @@ class ResultRoute extends PageRouteInfo<ResultRouteArgs> {
            params: params,
            score: score,
            total: total,
+           resultEntity: resultEntity,
          ),
          initialChildren: children,
        );
@@ -153,6 +155,7 @@ class ResultRoute extends PageRouteInfo<ResultRouteArgs> {
         params: args.params,
         score: args.score,
         total: args.total,
+        resultEntity: args.resultEntity,
       );
     },
   );
@@ -164,6 +167,7 @@ class ResultRouteArgs {
     required this.params,
     required this.score,
     required this.total,
+    required this.resultEntity,
   });
 
   final Key? key;
@@ -174,9 +178,11 @@ class ResultRouteArgs {
 
   final int total;
 
+  final ResultEntity resultEntity;
+
   @override
   String toString() {
-    return 'ResultRouteArgs{key: $key, params: $params, score: $score, total: $total}';
+    return 'ResultRouteArgs{key: $key, params: $params, score: $score, total: $total, resultEntity: $resultEntity}';
   }
 
   @override
@@ -186,12 +192,17 @@ class ResultRouteArgs {
     return key == other.key &&
         params == other.params &&
         score == other.score &&
-        total == other.total;
+        total == other.total &&
+        resultEntity == other.resultEntity;
   }
 
   @override
   int get hashCode =>
-      key.hashCode ^ params.hashCode ^ score.hashCode ^ total.hashCode;
+      key.hashCode ^
+      params.hashCode ^
+      score.hashCode ^
+      total.hashCode ^
+      resultEntity.hashCode;
 }
 
 /// generated route for

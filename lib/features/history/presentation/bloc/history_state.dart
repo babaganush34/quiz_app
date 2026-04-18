@@ -5,6 +5,5 @@ class HistoryState with _$HistoryState {
   const factory HistoryState.initial() = _Initial;
   const factory HistoryState.loading() = _Loading;
   const factory HistoryState.error(String message) = _Error;
-  const factory HistoryState.loaded(List<HistoryEntity> lsitHistory) = _Loaded;
-  const factory HistoryState.inserted(HistoryEntity history) = _Inserted;
+  const factory HistoryState.loaded(List<HistoryEntity> listHistory) = _Loaded;
 }

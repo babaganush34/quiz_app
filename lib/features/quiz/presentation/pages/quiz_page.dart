@@ -7,6 +7,7 @@ import 'package:qwiz_app/features/home/domain/entities/quiz_params.dart';
 import 'package:qwiz_app/features/quiz/presentation/bloc/quiz_bloc.dart';
 import 'package:qwiz_app/features/quiz/presentation/widgets/answer_widget.dart';
 import 'package:qwiz_app/features/quiz/presentation/widgets/next_button_widget.dart';
+import 'package:qwiz_app/features/result/domain/entities/result_entity.dart';
 
 @RoutePage()
 class QuizPage extends StatefulWidget {
@@ -99,8 +100,19 @@ class _QuizPageState extends State<QuizPage> {
               });
             },
             finished: (params, score, total) {
+              final resultEntity = ResultEntity(
+                score: score,
+                total: total,
+                difficulty: params.difficulty,
+                category: widget.currentCategory,
+              );
               getIt<AppRouter>().replaceAll([
-                ResultRoute(total: total, score: score, params: params),
+                ResultRoute(
+                  total: total,
+                  score: score,
+                  params: params,
+                  resultEntity: resultEntity,
+                ),
               ]);
             },
           );

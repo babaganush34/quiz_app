@@ -6,6 +6,7 @@ import 'package:qwiz_app/core/error/failure.dart';
 import 'package:qwiz_app/features/home/domain/entities/quiz_params.dart';
 import 'package:qwiz_app/features/quiz/domain/entities/question_entity.dart';
 import 'package:qwiz_app/features/quiz/domain/usecases/get_questions_usecase.dart';
+import 'package:qwiz_app/features/result/domain/entities/result_entity.dart';
 
 part 'quiz_event.dart';
 part 'quiz_state.dart';
@@ -59,7 +60,7 @@ class QuizBloc extends BaseBloc<QuizEvent, QuizState> {
         QuizState.finished(
           score: newScore,
           total: current.questions.length,
-          params: _currentParams,
+          params: _currentParams, 
         ),
       );
     } else {
