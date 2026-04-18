@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:qwiz_app/core/database/app_database.dart';
 import 'inject_module.config.dart';
 
 final getIt = GetIt.instance;
@@ -16,4 +17,7 @@ void configureDependencies() => getIt.init();
 abstract class AppModule {
   @lazySingleton
   Dio get dio => Dio();
+
+  @singleton
+  AppDatabase get db => AppDatabase();
 }

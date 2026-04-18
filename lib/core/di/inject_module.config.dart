@@ -13,6 +13,10 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../features/history/data/repository_impl/history_repository_impl.dart'
+    as _i443;
+import '../../features/history/domain/repository/history_repository.dart'
+    as _i757;
 import '../../features/home/data/datasources/home_remote_datasource.dart'
     as _i278;
 import '../../features/home/data/repository_impl/home_repository_impl.dart'
@@ -29,6 +33,7 @@ import '../../features/quiz/domain/repository/quiz_repository.dart' as _i488;
 import '../../features/quiz/domain/usecases/get_questions_usecase.dart'
     as _i401;
 import '../../features/quiz/presentation/bloc/quiz_bloc.dart' as _i505;
+import '../database/app_database.dart' as _i982;
 import '../router/app_router.dart' as _i81;
 import 'inject_module.dart' as _i394;
 
@@ -41,8 +46,12 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final appModule = _$AppModule();
     gh.factory<_i189.QuizRemoteDatasource>(() => _i189.QuizRemoteDatasource());
+    gh.singleton<_i982.AppDatabase>(() => appModule.db);
     gh.lazySingleton<_i361.Dio>(() => appModule.dio);
     gh.lazySingleton<_i81.AppRouter>(() => _i81.AppRouter());
+    gh.lazySingleton<_i757.HistoryRepository>(
+      () => _i443.HistoryRepositoryImpl(db: gh<_i982.AppDatabase>()),
+    );
     gh.factory<_i278.HomeRemoteDatasource>(
       () => _i278.HomeRemoteDatasource(gh<_i361.Dio>()),
     );
