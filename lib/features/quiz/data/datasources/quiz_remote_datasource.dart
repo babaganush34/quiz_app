@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:qwiz_app/core/constants/app_constants.dart';
-import 'package:qwiz_app/core/di/inject_module.dart';
+import 'package:qwiz_app/app/di/inject_module.dart';
 import 'package:qwiz_app/features/home/domain/entities/quiz_params.dart';
 import 'package:qwiz_app/features/quiz/data/models/question_model.dart';
 

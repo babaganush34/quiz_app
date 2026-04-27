@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qwiz_app/core/di/inject_module.config.dart';
-import 'package:qwiz_app/core/di/inject_module.dart';
-import 'package:qwiz_app/core/router/app_router.dart';
+import 'package:qwiz_app/app/di/inject_module.config.dart';
+import 'package:qwiz_app/app/di/inject_module.dart';
+import 'package:qwiz_app/app/router/app_router.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';

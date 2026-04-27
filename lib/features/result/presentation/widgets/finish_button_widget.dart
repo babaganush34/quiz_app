@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qwiz_app/core/di/inject_module.dart';
-import 'package:qwiz_app/core/router/app_router.dart';
+import 'package:qwiz_app/app/di/inject_module.dart';
+import 'package:qwiz_app/app/router/app_router.dart';
 import 'package:qwiz_app/features/result/domain/entities/result_entity.dart';
 import 'package:qwiz_app/features/result/presentation/bloc/result_bloc.dart';
 

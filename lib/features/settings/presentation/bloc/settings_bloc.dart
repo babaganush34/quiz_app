@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:qwiz_app/core/bases/base_usecase/usecase.dart';
-import 'package:qwiz_app/core/di/inject_module.dart';
+import 'package:qwiz_app/app/di/inject_module.dart';
 import 'package:qwiz_app/features/history/presentation/bloc/history_bloc.dart';
 import 'package:qwiz_app/features/settings/domain/usecases/clear_history_usecase.dart';
 

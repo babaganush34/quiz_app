@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:qwiz_app/core/constants/app_constants.dart';
-import 'package:qwiz_app/core/di/inject_module.dart';
+import 'package:qwiz_app/app/di/inject_module.dart';
 import 'package:qwiz_app/features/home/domain/entities/quiz_params.dart';
 import 'package:qwiz_app/features/result/domain/entities/result_entity.dart';
 import 'package:qwiz_app/features/result/presentation/bloc/result_bloc.dart';

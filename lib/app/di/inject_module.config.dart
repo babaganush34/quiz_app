@@ -47,7 +47,7 @@ import '../../features/settings/domain/repository/settings_repository.dart'
 import '../../features/settings/domain/usecases/clear_history_usecase.dart'
     as _i717;
 import '../../features/settings/presentation/bloc/settings_bloc.dart' as _i585;
-import '../database/app_database.dart' as _i982;
+import '../../core/database/app_database.dart' as _i982;
 import '../router/app_router.dart' as _i81;
 import 'inject_module.dart' as _i394;
 

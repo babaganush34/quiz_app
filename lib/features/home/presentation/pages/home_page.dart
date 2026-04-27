@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:qwiz_app/core/constants/app_constants.dart';
-import 'package:qwiz_app/core/di/inject_module.dart';
-import 'package:qwiz_app/core/router/app_router.dart';
+import 'package:qwiz_app/app/di/inject_module.dart';
+import 'package:qwiz_app/app/router/app_router.dart';
 import 'package:qwiz_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:qwiz_app/features/home/presentation/widgets/home_widget.dart';
 

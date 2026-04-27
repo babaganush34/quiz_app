@@ -1,8 +1,8 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:qwiz_app/core/di/inject_module.dart';
+import 'package:qwiz_app/app/di/inject_module.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qwiz_app/core/router/app_router.dart';
+import 'package:qwiz_app/app/router/app_router.dart';
 import 'package:qwiz_app/features/home/domain/entities/quiz_params.dart';
 import 'package:qwiz_app/features/quiz/presentation/bloc/quiz_bloc.dart';
 import 'package:qwiz_app/features/quiz/presentation/widgets/answer_widget.dart';

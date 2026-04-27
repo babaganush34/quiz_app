@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qwiz_app/core/di/inject_module.dart';
-import 'package:qwiz_app/core/router/app_router.dart';
+import 'package:qwiz_app/app/di/inject_module.dart';
+import 'package:qwiz_app/app/router/app_router.dart';
 import 'package:qwiz_app/features/home/domain/entities/quiz_params.dart';
 
 class StartButtonWidget extends StatelessWidget {

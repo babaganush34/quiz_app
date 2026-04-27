@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:qwiz_app/core/di/inject_module.dart';
+import 'package:qwiz_app/app/di/inject_module.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
 abstract class BaseBloc<Event, State> extends Bloc<Event, State> {
